@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  acorn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    restart: always
+    container_name: node_service
+    command: ["node","--watch", "server.js"]
+
+
