@@ -6,8 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"test": "vitest",
-		"lint": "npx prettier . --write",
-		"prepare": "husky install"
+		"lint": "npx prettier . --check",
+		"prepare": "husky",
+		"format": "prettier --write ."
 	},
 	"keywords": [],
 	"author": "",
