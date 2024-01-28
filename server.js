@@ -1,21 +1,20 @@
 /* eslint-disable no-undef */
 import express from "express";
-import { NodeVM } from 'vm2';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { NodeVM } from "vm2";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const app = express();
 
-app.get('/', (req, res) => {
-	res.sendFile(join(dirname(__filename), 'src', 'public', 'index.html'));
+app.get("/", (req, res) => {
+	res.sendFile(join(dirname(__filename), "src", "public", "index.html"));
 });
-
 
 app.use(express.json());
 
-app.post('/run',async (req, res) => {
-	const { userCode,expect } = req.body;
+app.post("/run", async (req, res) => {
+	const { userCode, expect } = req.body;
 	let output = "";
 	const vm = new NodeVM({
 		timeout: 2000,
@@ -23,14 +22,13 @@ app.post('/run',async (req, res) => {
 	});
 
 	vm.on("console.log", (data) => {
-		output += data ;
+		output += data;
 	});
 
 	try {
 		await vm.run(`${userCode}`);
 		const isCorrect = expect === output;
-		return res.json({ success: true, result: output ?? "null",isCorrect});
-
+		return res.json({ success: true, result: output ?? "null", isCorrect });
 	} catch (error) {
 		console.log(error);
 		return res.json({ success: false, error: error.message });

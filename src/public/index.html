@@ -3,9 +3,43 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			data-name="vs/editor/editor.main"
+			href="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/editor/editor.main.css"
+		/>
+
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/editor/editor.main.js"></script>
 		<title>Ensinado Testes</title>
 	</head>
 	<body>
-		<h1>teste</h1>
+		<h2>Criando uma editor para testar com Favian uma ideia</h2>
+		<div id="container" style="width: 100vw; height: 100vh"></div>
+
+		<script>
+			const CODE_INIT = `console.log("Hello World")`;
+
+			require.config({
+				paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor/min/vs" },
+			});
+
+				monaco.editor.create(document.getElementById("container"), {
+				value: CODE_INIT,
+				language: "javascript",
+				theme: "vs-dark",
+				minimap: { enabled: false },
+				automaticLayout: true,
+				contextmenu: false,
+				fontSize: 18,
+			});
+		</script>
+
+		<script></script>
 	</body>
 </html>

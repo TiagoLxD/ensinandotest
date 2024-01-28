@@ -13,4 +13,4 @@ RUN npm install --force
 EXPOSE 3000
 
 # Comando padrão para iniciar o serviço
-CMD ["node", "server.js"]
+CMD ["node","--watch", "server.js"]
